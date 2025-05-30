@@ -56,7 +56,7 @@ class RNNFromScratch:
                 weights = layer.get_weights()
                 
                 self.weights[layer.name] = {
-                    'kernel': weights[0],  # W_x
+                    'kernel': weights[0],  # x
                     'recurrent_kernel': weights[1],  # W_h
                     'bias': weights[2]  # b
                 }
@@ -129,7 +129,7 @@ class RNNFromScratch:
                 
                 for t in range(sequence_length):
                     # Mendapatkan input pada waktu t
-                    x_t = inputs[:, t, :]
+                    t = inputs[:, t, :]
                     
                     # Menghitung hidden state
                     h = self.apply_activation(
@@ -142,7 +142,7 @@ class RNNFromScratch:
                         outputs.append(h)
                     
                     # Mengupdate hidden state
-                    h_states[layer_name] = h
+                    states[layer_name] = h
                 
                 # Jika return_sequences adalah False, hidden state terakhir digunakan sebagai output
                 if layer_config['return_sequences']:
