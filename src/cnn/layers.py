@@ -55,23 +55,18 @@ class Conv2DLayer:
         output_data = np.zeros((output_height, output_width, self.out_channels))
 
         for output_channel in range(self.out_channels): 
-            for row_idx, output_row in enumerate(range(0, output_height)): 
-                for col_idx, output_col in enumerate(range(0, output_width)): 
+            for row_idx in enumerate(range(0, output_height)): 
+                for col_idx in enumerate(range(0, output_width)): 
                     row_start = row_idx * self.stride_height
                     row_end = row_start + self.kernel_height
                     col_start = col_idx * self.stride_width
                     col_end = col_start + self.kernel_width
                     
-                    # Extract current window for convolution
-                    current_window = padded_input[row_start:row_end, col_start:col_end, :]
                     
                     # Perform convolution operation
-                    convolution_result = 0
-                    for i in range(self.kernel_height):
-                        for j in range(self.kernel_width):
-                            for c in range(self.in_channels):
-                                convolution_result += current_window[i, j, c] * self.weights[i, j, c, output_channel]
-                    output_data[output_row, output_col, output_channel] = convolution_result + self.biases[output_channel]
+                    conv_sum = np.sum(padded_input[row_start:row_end, col_start:col_end, :] * self.weights[:, :, :, output_channel])
+                    output_data[row_idx, col_idx, output_channel] = conv_sum + self.biases[output_channel]
+                
         return output_data
 
 class ReLULayer:
