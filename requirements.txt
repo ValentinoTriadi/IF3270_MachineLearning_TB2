@@ -4,3 +4,7 @@ numpy>=1.19.5
 matplotlib>=3.4.0
 scikit-learn>=1.0.0
 requests>=2.25.0 
+=======
+keras
+tensorflow
+matplotlib

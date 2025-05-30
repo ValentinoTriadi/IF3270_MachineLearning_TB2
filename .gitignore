@@ -178,3 +178,6 @@ data/
 models/
 figures/
 results/
+=======
+
+lstm_keras.h5
