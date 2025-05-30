@@ -4,6 +4,7 @@ import keras
 class LSTMPreprocess:
     def __init__(self):
         self.embedding_layer = keras.Sequential()
+        self.vectorize_layer = None
 
     def tokenization(self, input, vocab_size=10000, max_len=100, **kwargs):
         self.vectorize_layer = keras.layers.TextVectorization(
