@@ -44,14 +44,14 @@ class CNN:
                 self.add_layer(scratch_pool)
                 print(f"Adding MaxPooling2DLayer (pool_size: {pool_size}, stride: {stride})")
 
-            # elif isinstance(keras_layer, keras.layers.AveragePooling2D):
-            #     stride = keras_layer.strides
-            #     if isinstance(stride, int): stride = (stride, stride)
-            #     pool_size = keras_layer.pool_size
+            elif isinstance(keras_layer, keras.layers.AveragePooling2D):
+                stride = keras_layer.strides
+                if isinstance(stride, int): stride = (stride, stride)
+                pool_size = keras_layer.pool_size
                 
-            #     scratch_pool = AveragePooling2DLayer(pool_size=pool_size, stride=stride)
-            #     self.add_layer(scratch_pool)
-            #     print(f"Adding AveragePooling2DLayer (pool_size: {pool_size}, stride: {stride})")
+                scratch_pool = AveragePooling2DLayer(pool_size=pool_size, stride=stride)
+                self.add_layer(scratch_pool)
+                print(f"Adding AveragePooling2DLayer (pool_size: {pool_size}, stride: {stride})")
 
             # Handle Average Pooling
             elif isinstance(keras_layer, keras.layers.GlobalAveragePooling2D):
