@@ -55,8 +55,8 @@ class Conv2DLayer:
         output_data = np.zeros((output_height, output_width, self.out_channels))
 
         for output_channel in range(self.out_channels): 
-            for row_idx in enumerate(range(0, output_height)): 
-                for col_idx in enumerate(range(0, output_width)): 
+            for row_idx in range(0, output_height): 
+                for col_idx in range(0, output_width): 
                     row_start = row_idx * self.stride_height
                     row_end = row_start + self.kernel_height
                     col_start = col_idx * self.stride_width
